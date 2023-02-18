@@ -4,6 +4,16 @@ export default class ProfileComponent extends Component {
     constructor(props) {
         super(props);
         this.state={}}
+
+        componentDidMount(){
+            this.timer=setInterval(()=>this.props.updateState(this.props.counter),1000)
+        }
+        
+        
+        componentWillUnmount(){
+            clearInterval(this.timer)
+            this.props.updateState(-1)
+        }
         
     render() {
         return (

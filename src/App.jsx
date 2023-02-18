@@ -12,24 +12,21 @@ export default class App extends Component {
             profession:'profession'
             },
       shows : false,
-      counter : 0,
+      counter:0
   }}
-
-  componentDidMount(){
-    this.timer=setInterval(()=>this.setState({counter:this.state.counter+1}), 1000)
+  
+  updateState=(value)=>{
+    this.setState({counter:value+1})
   }
 
-
-  componentWillUnmount(){
-    clearInterval(this.timer)
-  }
+  
 
   render() {
     return (
       <div style={{marginLeft:'40vw', marginRight:'40vw', border: '3px solid green' , display:'flex', flexDirection:'column', alignItems:'center'}}>
-        <h1>{this.state.counter}</h1>
+        {this.state.counter}
         <button onClick={()=>this.setState({shows:!this.state.shows})} style={{border:'1px solid black'}} >Show/Hide</button>
-        {this.state.shows? (<ProfileComponent data={this.state.person} ><img style={{height:'100px', width:'100px', borderRadius:'50px'}} src={this.state.person.imgSrc} /></ProfileComponent>):null}
+        {this.state.shows? (<ProfileComponent data={this.state.person} updateState={this.updateState} counter={this.state.counter} ><img style={{height:'100px', width:'100px', borderRadius:'50px'}} src={this.state.person.imgSrc} /></ProfileComponent>):null}
       </div>
     )
   }
